@@ -21,8 +21,6 @@ print("avg dispatchtime: ",reduce(lambda x,y: x + y, list(map(lambda x: float(x[
 print("avg totaltime: ",reduce(lambda x,y: x + y, list(map(lambda x: float(x["totaltime"]),data)))/len(data))
 
 
-print(len(list(filter(lambda x: x["neighborhood"] == "Airport Sub",data))))
-
 for x in data:
    if x["neighborhood"] not in neighborhoods:
        neighborhoods.append(x["neighborhood"])
