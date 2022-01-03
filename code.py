@@ -26,12 +26,15 @@ for x in data:
        neighborhoods.append(x["neighborhood"])
 
 for z in neighborhoods:
+    length = len(list(filter(lambda x: x["neighborhood"] == z,data)))
+    mini_list = list(filter(lambda x: x["neighborhood"] == z,data))
+
     print("\n" + z + "\n")
-    print("avg totalresponsetime: ",reduce(lambda x,y: x + y, list(map(lambda x: float(x["totalresponsetime"]),list(filter(lambda x: x["neighborhood"] == z,data)))))/len(list(filter(lambda x: x["neighborhood"] == z,data))))
+    print("avg totalresponsetime: ",reduce(lambda x,y: x + y, list(map(lambda x: float(x["totalresponsetime"]),mini_list)))/length)
 
-    print("avg dispatchtime: ",reduce(lambda x,y: x + y, list(map(lambda x: float(x["dispatchtime"]),list(filter(lambda x: x["neighborhood"] == z,data)))))/len(list(filter(lambda x: x["neighborhood"] == z,data))))
+    print("avg dispatchtime: ",reduce(lambda x,y: x + y, list(map(lambda x: float(x["dispatchtime"]),mini_list)))/length)
 
-    print("avg totaltime: ",reduce(lambda x,y: x + y, list(map(lambda x: float(x["totaltime"]),list(filter(lambda x: x["neighborhood"] == z,data)))))/len(list(filter(lambda x: x["neighborhood"] == z,data))))
+    print("avg totaltime: ",reduce(lambda x,y: x + y, list(map(lambda x: float(x["totaltime"]),mini_list)))/length)
 
 file = open("data.json","w")
 file = json.dump(data,file)
