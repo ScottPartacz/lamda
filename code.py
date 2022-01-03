@@ -25,19 +25,29 @@ for x in data:
    if x["neighborhood"] not in neighborhoods:
        neighborhoods.append(x["neighborhood"])
 
+neighborhoods_list_dict = []
+
 for z in neighborhoods:
     length = len(list(filter(lambda x: x["neighborhood"] == z,data)))
     mini_list = list(filter(lambda x: x["neighborhood"] == z,data))
 
     print("\n" + z + "\n")
-    print("avg totalresponsetime: ",reduce(lambda x,y: x + y, list(map(lambda x: float(x["totalresponsetime"]),mini_list)))/length)
 
-    print("avg dispatchtime: ",reduce(lambda x,y: x + y, list(map(lambda x: float(x["dispatchtime"]),mini_list)))/length)
+    totalrestime_avg = reduce(lambda x,y: x + y, list(map(lambda x: float(x["totalresponsetime"]),mini_list)))/length
+    print("avg totalresponsetime: ",totalrestime_avg)
 
-    print("avg totaltime: ",reduce(lambda x,y: x + y, list(map(lambda x: float(x["totaltime"]),mini_list)))/length)
+    distime_avg = reduce(lambda x,y: x + y, list(map(lambda x: float(x["dispatchtime"]),mini_list)))/length
+    print("avg dispatchtime: ",distime_avg)
 
+    totaltime_avg = reduce(lambda x,y: x + y, list(map(lambda x: float(x["totaltime"]),mini_list)))/length
+    print("avg totaltime: ",totaltime_avg)
+
+    temp_dict = {"neighborhood": z,"avg_totalresponsetime":totalrestime_avg,"avg_dispatchtime":distime_avg,"totaltime_avg":totaltime_avg}
+    neighborhoods_list_dict.append(temp_dict)
+
+print(neighborhoods_list_dict)
 file = open("data.json","w")
-file = json.dump(data,file)
+file = json.dump(neighborhoods_list_dict,file)
 
 
 
