@@ -11,7 +11,7 @@ with open ("911_Calls_for_Service_(Last_30_Days).csv") as file:
     data = [{x: y for x,y in row.items()} for row in csv.DictReader(file)]
         
 
-data = list(filter(lambda x: x["zip_code"] != "0" and x["neighborhood"] != "" and x["dispatchtime"] != "" and x["totaltime"] != "" and x["totalresponsetime"] != "", data))
+data = list(filter(lambda x: x["zip_code"] not in ("0","") and x["neighborhood"] != "" and x["dispatchtime"] != "" and x["totaltime"] != "" and x["totalresponsetime"] != "", data))
 
 
 print("avg totalresponsetime: ",reduce(lambda x,y: x + y, list(map(lambda x: float(x["totalresponsetime"]),data)))/len(data))
