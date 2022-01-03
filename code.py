@@ -45,7 +45,7 @@ for z in neighborhoods:
     temp_dict = {"neighborhood": z,"avg_totalresponsetime":totalrestime_avg,"avg_dispatchtime":distime_avg,"totaltime_avg":totaltime_avg}
     neighborhoods_list_dict.append(temp_dict)
 
-print(neighborhoods_list_dict)
+#print(neighborhoods_list_dict)
 file = open("data.json","w")
 file = json.dump(neighborhoods_list_dict,file)
 
